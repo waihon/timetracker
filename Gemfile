@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+# User authentication
+gem 'devise'
+# Pagination
+gem 'will_paginate'
+# Web server: bundle exec thin start (http://code.macournoyer.com/thin/)
+gem 'thin'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
