@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   validates :lname, presence: true,
                     length: { minimum: 5 }
   validates :company, presence: true  
+
+  def name
+    "#{fname} #{lname}"
+  end
 end

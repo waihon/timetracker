@@ -1,0 +1,16 @@
+<h1><%= @project.name %></h1>
+<table>
+  <tr>
+    <th align="left">CompanyL</th>
+    <td><%= @project.company.name %></td>
+  </tr>
+  <tr>
+    <th align="left">Default Rate:</th>
+    <td><%= number_to_currency(@project.default_rate) %></td>
+  </tr>
+  <tr>
+    <th align="left">SLug:</th>
+    <td><%= @project.slug %></td>
+  </tr>
+</table>
+<p><%= link_to "All Projects", projects_path %></p>

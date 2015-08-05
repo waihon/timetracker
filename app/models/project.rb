@@ -10,7 +10,8 @@ class Project < ActiveRecord::Base
                            { only_integer: true,
                              greater_than_or_equal_to: 50,
                              less_than: 1000 }
-
+  validates :slug, length: { minimum: 3 }                             
+  validates :slug, uniqueness: true
 
   scope :lowdefaultrate, -> { where("default_rate < 100")}
 end

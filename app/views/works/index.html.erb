@@ -1,0 +1,8 @@
+<h1>Works: index</h1>
+<ul>
+  <% @works.each do |work| %>
+    <li>
+      <%= link_to "Work Item #{work.id}: Performed on #{work.datetimeperformed} by #{work.user.name} for #{work.project.name}", work %>
+    </li>
+  <% end %>
+</ul>
