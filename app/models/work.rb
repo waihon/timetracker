@@ -13,11 +13,16 @@ class Work < ActiveRecord::Base
 
 
   scope :fullday, -> { where("hours >= 8") }
-  #scope :recent, -> { where("datetimeperformed > '#{Time.now - 7.days}'") }
 
+  #scope :recent, -> { where("datetimeperformed > '#{Time.now - 7.days}'") }
   def self.recentdays(num_days_ago)
     since_date = Time.now - num_days_ago.to_i.days
     where("datetimeperformed > '#{since_date}'")
+  end
+
+  def to_s
+    #"Performed on #{work.datetimeperformed} by #{work.user.name} for #{work.project.name}"    
+    "#{user}: #{datetimeperformed.strftime('%m/%m/%Y %H:%M')} - #{hours} hours"
   end
 
   private

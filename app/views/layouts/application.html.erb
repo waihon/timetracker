@@ -7,8 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <div id="container">
+    <header>
+      <%= link_to content_tag("canvas", "TimeTracker", id: "logocanvas"), root_url %>
+      <nav>
+        <ul>
+          <% nav_items.each do |nav_item| %>
+            <%= display_nav_item(nav_item[:displaytext], nav_item[:controllername], nav_item[:linkurl]) %>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+    <section id="main">
+      <article>
+        <%= yield %>
+      </article>
+      <aside>
+        <%= yield :aside %>
+      </aside>
+    </section>
+    <footer>
+      <p>Time Tracker is a <em>Sample Company</em> App</p>
+    </footer>
+  </div>
 
 </body>
 </html>

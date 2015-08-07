@@ -1,8 +1,19 @@
 <h1>Works: index</h1>
-<ul>
-  <% @works.each do |work| %>
-    <li>
-      <%= link_to "Work Item #{work.id}: Performed on #{work.datetimeperformed} by #{work.user.name} for #{work.project.name}", work %>
-    </li>
-  <% end %>
-</ul>
+<p>Heare are all of the work items:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Project</th>
+      <th>User</th>
+      <th>Date Time Performed</th>
+      <th>Hours</th>
+      <th>View</th>
+    </tr>
+    <%= render partial: "work", collection: @works %>
+  </tbody>
+</table>
+
+<% content_for :aside do %>
+  <% render "sidebar" %>
+<% end %>

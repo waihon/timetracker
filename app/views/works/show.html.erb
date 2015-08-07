@@ -1,20 +1,23 @@
 <h1>Work Item <%= @work.id %></h1>
 <table>
   <tr>
-    <th align="left">Project:</th>
+    <th align="left">Project</th>
     <td><%= @work.project.name %></td>
   </tr>
   <tr>
-    <th align="left">User:</th>
-    <td><%= @work.user.name %></td>
+    <th align="left">User</th>
+    <td><%= @work.user %></td>
   </tr>
   <tr>
-    <th align="left">Date Performed:</th>
+    <th align="left">Date Performed</th>
     <td><%= @work.datetimeperformed %></td>
   </tr>
   <tr>
-    <th align="left">Hours:</th>
+    <th align="left">Hours</th>
     <td><%= @work.hours %></td>
   </tr>
 </table>
-<p><%= link_to "All Works", works_path %></p>
+
+<% content_for :aside do %>
+  <% render "sidebar" %>
+<% end %>

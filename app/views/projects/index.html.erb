@@ -1,8 +1,15 @@
 <h1>Projects: index</h1>
-<ul>
-  <% @projects.each do |project| %>
-    <li>
-      <%= link_to project.name, project %>
-    </li>
-  <% end %>
-</ul>
+<p>Heare are all of the projects:</p>
+<table>
+  <tbody>
+    <tr>
+      <th>Project</th>
+      <th>Company</th>
+    </tr>
+    <%= render partial: "project", collection: @projects %>
+  </tbody>
+</table>
+
+<% content_for :aside do %>
+  <% render "sidebar" %>
+<% end %>
