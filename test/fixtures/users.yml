@@ -8,13 +8,17 @@ brianhoke:
   fname: Brian
   lname: Hoke
   company: bentleyhoke
+  email: bhoke@bentleyhoke.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
 
 janedoe:
   fname: Jane
   lname: Doe
   company: bentleyhoke
+  email: jdoe@example.com
 
 ralphmartinez:
   fname: Ralph
   lname: Martinez
   company: clientinc
+  email: rmartin@example.com
