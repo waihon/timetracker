@@ -39,6 +39,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
+      Usermailer.project_updated_email(@project).deliver
       flash[:notice] = "Project Updated"
       redirect_to @project
     else
@@ -48,6 +49,6 @@ class ProjectsController < ApplicationController
 
   private
     def project_params
-      params.require(:project).permit(:name, :company_id, :default_rate, :slug)
+      params.require(:project).permit(:name, :company_id, :default_rate, :slug, :user_id)
     end
 end

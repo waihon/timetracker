@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   belongs_to :company
   has_many :works
   has_many :projects, :through => :works
+  has_many :projects
 
   validates :fname, presence: true,
                     length: { minimum: 2 }

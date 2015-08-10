@@ -19,6 +19,7 @@ class WorksController < ApplicationController
     @work = Work.new(work_params)
     respond_to do |format|
       if @work.save
+        Usermailer.workcreated_email(@work).deliver_now
         format.html { redirect_to @work, notice: "Work Created" }
         format.js { }
       else

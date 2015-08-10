@@ -12,6 +12,10 @@
     <th align="left">Slug</th>
     <td><%= @project.slug %></td>
   </tr>
+  <tr>
+    <th align="left">User</th>
+    <td><%= @project.user %></th>
+  </tr>
 </table>
 
 <p><%= link_to "Edit Project", edit_project_path(@project) %>

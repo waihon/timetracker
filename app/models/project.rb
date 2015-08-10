@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :company
   has_many :works
   has_many :users, :through => :works
+  belongs_to :user
 
   validates :name, presence: true,
                    length: { minimum: 5 }
@@ -12,6 +13,7 @@ class Project < ActiveRecord::Base
                              less_than: 1000 }
   validates :slug, length: { minimum: 3 }                             
   validates :slug, uniqueness: true
+  validates :user, presence: true
 
   scope :lowdefaultrate, -> { where("default_rate < 100")}
 
