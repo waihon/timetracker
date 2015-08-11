@@ -16,6 +16,12 @@
     <th align="left">Hours</th>
     <td><%= @work.hours %></td>
   </tr>
+  <% if @work.doc %>
+    <tr>
+      <th align="left">Document</th>
+      <td><%= link_to @work.doc, "/uploads/#{@work.doc}", target: "_blank" %></td>
+    </tr>
+  <% end %>
 </table>
 
 <p><%= link_to "Edit Work", edit_work_path(@work) %></p>

@@ -17,6 +17,14 @@ class WorksController < ApplicationController
 
   def create
     @work = Work.new(work_params)
+    if params[:doc]
+      uploaded_io = params[:doc]
+      @work.doc = uploaded_io.original_filename   
+      File.open(Rails.root.join("public", "uploads", uploaded_io.original_filename), "wb") do |file|
+        file.write(uploaded_io.read)
+        @work.doc = uploaded_io.original_filename
+      end
+    end
     respond_to do |format|
       if @work.save
         Usermailer.workcreated_email(@work).deliver_now
@@ -35,6 +43,15 @@ class WorksController < ApplicationController
 
   def update
     @work = Work.find(params[:id])
+    
+    if params[:doc]
+      uploaded_io = params[:doc]
+      @work.doc = uploaded_io.original_filename   
+      File.open(Rails.root.join("public", "uploads", uploaded_io.original_filename), "wb") do |file|
+        file.write(uploaded_io.read)
+        @work.doc = uploaded_io.original_filename
+      end
+    end
 
     if @work.update(work_params)
       flash[:notice] = "Work Updated"
