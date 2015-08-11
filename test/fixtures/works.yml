@@ -4,7 +4,7 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-<% 5.times do |n| %>
+<% 20.times do |n| %>
 work_<%= n %>:
   datetimeperformed: <%= Time.now - n.days %>
   user: <%= n % 2 == 0 ? "brianhoke" : "janedoe" %>
