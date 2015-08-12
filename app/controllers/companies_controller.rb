@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  before_filter :confirm_admin, only: [:new, :create, :edit, :update]
+
   def index
     @companies = Company.all
   end
@@ -45,4 +47,13 @@ private
   def company_params
     params.require(:company).permit(:name)
   end  
+
+  def confirm_admin
+    unless current_user.admin?
+      redirect_to companies_path, :alert => "Only admins can create/modify a company"
+      return false
+    else
+      return true
+    end
+  end
 end

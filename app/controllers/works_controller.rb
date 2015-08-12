@@ -1,9 +1,11 @@
 class WorksController < ApplicationController
+  before_filter :authenticate_user!, only: [:new, :create]
+
   def index
     if params[:days]
-      @works = Work.recentdays(params[:days]).order("datetimeperformed DESC")
+      @works = Work.recentdays(params[:days]).order("datetimeperformed DESC").paginate(page: params[:page])
     else
-      @works = Work.all.order("datetimeperformed DESC")
+      @works = Work.all.order("datetimeperformed DESC").paginate(page: params[:page])
     end
   end
 
@@ -17,6 +19,8 @@ class WorksController < ApplicationController
 
   def create
     @work = Work.new(work_params)
+    @work.user = current_user
+
     if params[:doc]
       uploaded_io = params[:doc]
       @work.doc = uploaded_io.original_filename   
@@ -43,7 +47,8 @@ class WorksController < ApplicationController
 
   def update
     @work = Work.find(params[:id])
-    
+    @work.user = current_user
+
     if params[:doc]
       uploaded_io = params[:doc]
       @work.doc = uploaded_io.original_filename   
@@ -63,6 +68,10 @@ class WorksController < ApplicationController
 
   private
     def work_params
-      params.require(:work).permit(:project_id, :user_id, :datetimeperformed, :hours)
+      params.require(:work).permit(:project_id, :datetimeperformed, :hours)
+    end
+
+    def set_current_user
+      self.user = current_user
     end
 end

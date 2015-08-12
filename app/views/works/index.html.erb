@@ -13,6 +13,7 @@
     <%= render partial: "work", collection: @works %>
   </tbody>
 </table>
+<%= will_paginate @works %>
 
 <% content_for :aside do %>
   <% render "sidebar" %>

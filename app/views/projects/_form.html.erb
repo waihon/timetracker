@@ -27,8 +27,8 @@
     <%= f.collection_select(:company_id, Company.all.order("name"), :id, :name, prompt: true) %>
   </div>
   <div>
-    <%= f.label :user %>
-    <%= f.collection_select(:user_id, User.all.order("lname, fname"), :id, :to_s, prompt: true) %>
+    <%= f.label :owner %>
+    <%= f.collection_select(:owner_id, User.all.order("lname, fname"), :id, :to_s, prompt: true) %>
   </div>
   <div>
     <%= f.submit @project.new_record? ? "Create Project" : "Update Project" %>
